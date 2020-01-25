@@ -12,4 +12,6 @@ Changes from 12/21/2016
 8. Changed names and categories, removed the "BID" Row
 9. Added "Freeze Quiz" functionality to the debug menu ('Q'). It stops the timer, and prevents teams from answering. Once Frozen, necessary adjustments could be made through the debug menu.
 
+Changes from 2020
+
 UP Circuit DevTeam AY1516
