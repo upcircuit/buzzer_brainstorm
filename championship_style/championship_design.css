@@ -1,0 +1,417 @@
+/*@font-face {
+	font-family: 'BebasNeue';
+	src: url('../championship_fonts/BebasNeue.otf');
+}*/
+
+@font-face {
+    font-family: 'Moon';
+    src: url('../championship_fonts/MoonLight.otf');
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('../championship_fonts/ProximaNova-Regular.otf');
+}
+
+@font-face {
+    font-family: 'DS-Digital';
+    src: url('../championship_fonts/DS-DIGI.ttf');
+}
+
+
+
+#timer {
+    font: 350px "DS-Digital";
+    color: #e6001c;
+}
+
+.timer2 {
+    font: 180px "DS-Digital";
+    color: #e6001c;
+}
+
+#checker, #buzzedteam {
+    font-family: "Proxima Nova";
+}
+
+#bg
+{
+    position: fixed;
+    top: -50%;
+    left: -50%;
+}
+
+#championship{
+	position: absolute;
+	top: 0%;
+	left: 0px;
+	height: 20%;
+	width: 100%;
+
+	text-align: center;
+	font-size: 35px;
+	font-family: Moon;
+}
+
+#teams{
+	position: relative;
+	top: 20%;
+}
+
+.elims {
+    font: 55px "Proxima Nova";
+}
+
+#question_board{
+	position: absolute;
+	top: 16%;
+	left: 5%;
+
+	height: 35%;
+	width: 48%;
+	
+	text-align: center;
+}
+
+#all_scoreboard{
+	position: absolute;
+	bottom: 0px;
+	left: 5%;
+    right: 5%;
+
+	width: 48%;
+	height: 35%;
+
+	//background-color: #27A71A;
+	/*NOTE: table style is in table itself (see below)*/
+}
+
+#chooser{
+	position: fixed;
+	left: 5%;
+	top: 52%;
+
+
+	width: 48%;
+	height: 9%;
+
+
+	//background-color: red;
+}
+
+#times{
+	position: absolute;
+	top: 16%;
+	right: 5%;
+
+	width: 40%;
+	height: 37%;
+    
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#team_display{
+	position: absolute;
+	right: 5%;
+	bottom: 0px;
+	top: 65%;
+
+	width: 40%;
+    height: 35%;
+    
+    line-height: 5px;
+
+}
+
+/*#questions{
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+}*/
+
+#buttons{
+	position: absolute;
+	top: 53%;
+	right: 5%;
+
+	width: 40%;
+	height: 10%;
+}
+
+#confirmques{
+	position: absolute;
+    right: 0px;
+    top: 25%;
+
+	width: 20%;
+	height: 100%;
+
+}
+
+#dynamicDivQuesChosen{ /*for quesChosen to make font-size dynamic*/
+    font-family: 'Proxima Nova';
+    color: #e6001c;
+	position: absolute;
+	left:0px;
+	top:0px;
+
+	width: 80%;
+	height: 100%;
+}
+
+/*#ranker{
+	width: 100%;
+	height: 100%;
+}//*/
+#test{
+	position: absolute;
+	left: 5%;
+	top: 16%;
+    text-align: center;
+    width: 48%;
+
+}
+#clinch{
+    text-align: center;
+	position: absolute;
+	top: 40%;
+    left: 5%;
+    width: 48%;
+	z-index: 1;
+    text-align: center;
+}
+
+.centered {
+    position: fixed;
+    text-align: center;
+    overflow-y: auto;
+    height: 80%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+    box-shadow: 0 0 40px black;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.70);
+    padding: 55px;
+}
+
+.table {
+    font: 20px "Proxima Nova";
+}
+
+.hor_center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.normal {
+    font: 20px "Proxima Nova";
+    margin: 0px;
+}
+
+.normal_2 {
+    font-family: "Proxima Nova";
+    margin: 0px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.text_center {
+    text-align: center;
+}
+
+td {
+    padding: 2px;
+}
+
+.button {
+    background-color: #175d7d;
+    border-radius: 10px;
+    color: white;
+    font: 16px "Moon";
+    width: auto;
+    height: 35px;
+    border: none;
+    
+    transition: all 0.1s ease-in-out;
+}
+
+.button:hover {
+    background-color: #850e18;
+    border-radius: 0px;
+    font-size: 20px;
+    
+    -webkit-transform: scale(1.10,1.10);
+}
+
+.teamname {
+    font: 30px "Proxima Nova";
+    padding-left: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+.box {
+    border-radius: 10px;
+    color: black;
+    border: none;
+}
+
+.box:hover {
+    background-color: #39ded0;
+}
+
+.go {
+    background-color: #009905;
+    border-radius: 25px;
+    color: white;
+    font: 18px "Moon";
+    border: none;
+    opacity: 0.35;
+}
+
+.go:hover {
+    opacity: 1;
+}
+
+.header {
+    background-color: #444a48;
+    color: white;
+    text-transform: uppercase;
+    font: 20px "Proxima Nova";
+}
+
+.header_pad {
+    padding: 6px;
+}
+
+.noans {
+    color: #5e6360;
+}
+
+.answer {
+    background-color: transparent;
+    font: 18px "Proxima Nova";
+    border: none;
+    width: 43px;
+}
+
+.lines {
+    border-bottom: 1px solid #39ded0;
+}
+
+.scoreboard {
+    cursor: pointer;
+    position: relative;
+}
+
+.scoreboard:hover::after {
+    background-color: #39ded0;
+    content: '\00a0';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+
+table {
+    border-collapse: collapse;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.box:hover {
+    background-color: #39ded0;
+}
+
+.cat_click {
+    transition: all 0.1s ease-in-out;
+    background-color: transparent;
+    font: 18px "Proxima Nova";
+    border: none;
+    width: 100%;
+    color: #e6001c;
+}
+
+.cat_click:hover {
+    -webkit-transform: scale(1.25,1.25);
+}
+
+.table_cat {
+    font: 0px "Proxima Nova";
+}
+
+.num {
+    font: 38px "DS-Digital";
+    font-style: italic;
+    text-align: center;
+}
+
+.bid {
+    border: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0px;
+}
+
+.scores {
+    font-size: 40px;
+}
+
+.wrong {
+    color: #e6001c;
+}
+
+.marks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0.45;
+    
+    -webkit-transition-timing-function: ease;
+    
+    animation-duration: 0.3s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        z-index: -1;
+        height: 10%;
+        opacity: 1;
+    }
+    
+    to {
+        z-index: 1;
+        height: 80%;
+        opacity: 0.45;
+    }
+}
+
+.ranking {
+    font-size: 50px;
+}
+
+.disregard {
+    background-color: #850e18;
+}
+
+.tie {
+    font-size: 20px;
+}
+
+.winners {
+    font-size: 24px;
+    font-style: italic;
+}
