@@ -1,0 +1,149 @@
+<!-- All rights reserved. -->
+<!--(C) UP Circuit DevTeam AY1516-->
+<!-- Daroya, Dionido, Galapon, Jose, Peralta -->
+<HTML>
+     <TITLE>Championship Round 2020</TiTLE>
+     <HEAD>
+          <link rel="stylesheet" type="text/css" href="championship_style/championship_design.css">
+     
+          <audio id='ansbuzz'>
+               <source src="sounds/buzzer2.wav"></source>
+               Buzzer audio.
+          </audio>
+     
+          <audio id='timeup'>
+               <source src="sounds/bell.mp3"></source>
+               Main timer audio.
+          </audio>
+     
+          <audio id='turnup'>
+               <source src="sounds/buzzer.wav"></source>
+               Timer to answer audio.
+          </audio>
+     
+          <audio id='tick'>
+               <source src="sounds/beep.wav"></source>
+               Countdown to answer audio.
+          </audio>
+          
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+          <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+          <script src="ext/jquery.fittext.js"></script>
+          <script>jQuery("#quesChosen").fitText(1.2, { minFontSize: '20px', maxFontSize: '40px' }); //for autofit text</script>-->
+          <!-- The following (socket.io.js) is only required when using the node_server -->
+          <!-- <script src="socket.io/socket.io.js"></script> -->
+          <script src="dist/Breakout.min.js"></script>
+          <script src="libs/fastclick.min.js"></script>
+          <script src="libs/jquery.min.js"></script>
+          <script src="ext/jquery-bigtext.js"></script> <!-- for auto-size fonts-->
+          <script src="scripts/main.js"></script>
+          <link rel="stylesheet" href="jquery-ui.min.css">
+          <!-- <script src="external/jquery/jquery.js"></script> -->
+          <script src="jquery-ui.min.js"></script>
+     </HEAD>
+
+     <BODY>
+         <div id='bg'><img src="championship_style/new.jpg" width=100%/></div>
+         <div class='centered'>
+          <div id='championship'>Brainstorm 2020<br><span class='elims'>Championship Round<span></div>
+          <div id='teams'>
+               <span class='normal italic'>Enter team names:</span><br/>
+               <TABLE border="0" class='table hor_center'>
+             <TR class='header'>
+                 <TD> # </TD>
+                 <TD class='text_center'> TEAM NAME </TD>
+             </TR>
+             <TR> <TD> 1 </TD> <TD> <INPUT type='text' id='team1' class='teamname box'><br> </TD> </TR>
+             <TR> <TD> 2 </TD> <TD> <INPUT type='text' id='team2' class='teamname box'><br> </TD> </TR>
+             <TR> <TD> 3 </TD> <TD> <INPUT type='text' id='team3' class='teamname box'><br> </TD> </TR>
+             <TR> <TD> 4 </TD> <TD> <INPUT type='text' id='team4' class='teamname box'><br> </TD> </TR>
+             <TR> <TD> 5 </TD> <TD> <INPUT type='text' id='team5' class='teamname box'><br> </TD> </TR>
+                 </TABLE>
+             <br/>
+               <INPUT type='button' value='Submit' class='button' onclick='submitNames()'>
+          </DIV>
+     
+          <DIV id='question_board'>
+               <div id='questions'></div>
+               
+          </DIV>
+     
+          <DIV id='chooser'>
+               <div id='dynamicDivQuesChosen'><div id='quesChosen'></div></div>
+             <DIV id='confirmques'><INPUT type='button' value='Confirm' class='go' onclick='confirmQuestion()' style='width: 80%'></DIV>
+          </DIV>
+     
+          <DIV id='times'>
+               <div id='timer'></div>
+               <DIV id='anstimer'></DIV>
+               <DIV id='stealtimedisp'></DIV>
+          </DIV>
+          
+     
+          <DIV id='team_display'>
+               <DIV id='checker' style='color: black;'></DIV> <!--container for whether team gets question right or wrong-->
+               <DIV id='buzzedteam' style='color: black;'></DIV> <!--container for which team pressed the buzzer-->
+          </DIV>
+     
+          <DIV id='buttons'>
+               <DIV id='bidbutton'><INPUT type='button' class='go' value='Bid' onclick='startTime()' style='width:100%;'></DIV>
+               <DIV id='timerbutton'><input type='button' class='go' value='Go' onclick='startTime()' style='width:100%;'/></DIV>
+               <DIV id='stealbutton'><INPUT type='button' class='go' value='Steal' onclick='steal()' style='width:100%;'></DIV>
+               <DIV id='judgeans' style='width:100%;height:100%;'>
+                    <INPUT type='button' id='correctinput' value='Correct' class='go' onclick='correctAns()' style='position:absolute; left:0%; top:0%; width:33%; height: 100%; font-size: 25px;'>
+                    <INPUT type='button' id='incorrectinput' value='Incorrect' class='go' onclick='wrongAns()' style='position:absolute; right:0%; top:0%; width:33%; height: 100%; background-color: #e6001c; font-size: 25px;'>
+                    <DIV ><INPUT id='bidvalue' type='text' value='' class='num bid' style='position:absolute; height: 100%; right:33.5%; top:0%; height:100%; width:33%; font-size:70px; text-align:center;'></DIV>
+               </DIV>
+               <DIV id='judgeans_clincher' style='width:100%;height:100%;'>
+                         <!--<INPUT type='button' id='correctinput' value='Correct' onclick='correctAnsClinch()' style='position:absolute; left:0%; top:0%; height:100%; width:50%;font-size:40px;font-family:BebasNeue;'>
+                         <INPUT type='button' id='incorrectinput' value='Incorrect' onclick='wrongAnsClinch()' style='position:absolute; right:0%; top:0%; height:100%; width:50%;font-size:40px;font-family:BebasNeue;'>-->
+                         <!--<INPUT id='bidvalue_clincher' type='text' value='' style='position:absolute; right:33%; top:0%; height:100%; width:33%; font-size:40px; text-align:center;'>-->
+                         <INPUT type='button' id='clear_clinch' class='go' value='Clear' onclick='resetBuzzer()' style='position:absolute; right:0%; top:0%;  width:100%;'>
+                         <INPUT type='button' id='nextques' class='go' value='Next Question' onclick='nextQues()' style='position:absolute; right:0%; top:0%; width:100%;'>
+                    </DIV>
+               <DIV id='ranker'><INPUT type='button' class='go' value='Rank Teams' onclick='afterDiff()' style='width:100%;'></DIV>
+          </DIV>
+     
+          <div id='all_scoreboard'></div>
+          <div id='clinch'></div>
+          <div id='test'></div>
+         </div>
+          <div id="dialog" title="Edit Scores">
+               <form name="editscores">
+                    <table width='450px' style="text-align:center;border:1px solid white; border-collapse:collapse;" id="scoretable">
+                         <tr><th colspan='2'>SCOREBOARD</th></tr>
+                         <tr>
+                              <th>TEAM</th>
+                              <th>SCORE</th>
+                         </tr>
+                         <tr>
+                              <td id="a_1"></td>
+                              <td><input type="text" id="a_2" size='4'></td>
+                         </tr>
+                         <tr>
+                              <td id="b_1"></td>
+                              <td><input type="text" id="b_2" size='4'></td>
+                         </tr>
+                         <tr>
+                              <td id="c_1"></td>
+                              <td><input type="text" id="c_2" size='4'></td>
+                         </tr>
+                         <tr>
+                              <td id="d_1"></td>
+                              <td><input type="text" id="d_2" size='4'></td>
+                         </tr>
+                         <tr>
+                              <td id="e_1"></td>
+                              <td><input type="text" id="e_2" size='4'></td>
+                         </tr>
+                    </table>
+                    <div id="checkboxdiv">
+                    
+                    </div>
+                    <center><input type="submit" value="Submit" class="button" id='submitbutton'></center>
+               </form>
+          </div>
+     </BODY>
+     
+     
+     </HTML>

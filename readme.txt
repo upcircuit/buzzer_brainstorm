@@ -13,5 +13,6 @@ Changes from 12/21/2016
 9. Added "Freeze Quiz" functionality to the debug menu ('Q'). It stops the timer, and prevents teams from answering. Once Frozen, necessary adjustments could be made through the debug menu.
 
 Changes from 2020
+Stealing is not automatic.  Need
 
 UP Circuit DevTeam AY1516
